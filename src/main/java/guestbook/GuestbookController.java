@@ -146,6 +146,8 @@ class GuestbookController {
 	@PostMapping(path = "/guestbook")
 	HtmxResponse addEntry(@Valid GuestbookForm form, Model model) {
 
+		form = new GuestbookForm(form.getName(), form.getText() + " <<< This message is a lie!");
+		
 		model.addAttribute("entry", guestbook.save(form.toNewEntry()));
 		model.addAttribute("index", guestbook.count());
 
